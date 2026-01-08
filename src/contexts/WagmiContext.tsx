@@ -37,7 +37,8 @@ const WagmiContext = ({ children }: { children: ReactNode }) => {
   const [useForkedEnv] = useCachedState(Settings.USE_FORKED_ENV, false);
   const [forkEnvUrl] = useCachedState(Settings.FORK_ENV_URL, process.env.REACT_APP_DEFAULT_FORK_RPC_URL);
   const defaultChainId = parseInt(process.env.REACT_APP_DEFAULT_CHAINID!)
-  const projectId = process.env.WALLETCONNECT_PROJECT_ID!;
+  const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
+  if (!projectId) throw new Error('Missing NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID');
 
   const chainConfig = useMemo(
     () =>
